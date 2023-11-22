@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         // Si el resultado es correcto
         if (result.resultCode == Activity.RESULT_OK) {
             // Obtenemos el dato "province" del Intent que ha vuelto.
-            val mensaje = result.data?.getStringExtra("mensajetext")
+            val mensaje = result.data?.getStringExtra("mensaje2")
             // Establecemos el texto del TextView con la provincia seleccionada.
             respuestaView.text = mensaje
         }
@@ -33,7 +33,10 @@ class MainActivity : AppCompatActivity() {
         // Establecemos un listener para el botón, que se llamará cuando se haga clic en él.
         buttonSend.setOnClickListener {
 
-            val intent = Intent(this, MensajeActivity::class.java)
+            val intent = Intent(this, MensajeActivity::class.java).apply {
+                val mensaje_main : TextView = findViewById(R.id.mensaje_main)
+                putExtra("mensaje1", mensaje_main.text.toString())
+            }
             // Lanzamos la actividad con el launcher que espera un resultado.
             startForResult.launch(intent)
         }

@@ -17,7 +17,9 @@ class MensajeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mensaje)
-
+        val mensaje1 = intent.getStringExtra("mensaje1")
+        var respuesta:TextView = findViewById(R.id.respuesta)
+        respuesta.text = mensaje1
         mensajeView = findViewById(R.id.mensaje)
         val buttonSend = findViewById<Button>(R.id.enviar)
 
@@ -25,7 +27,7 @@ class MensajeActivity : AppCompatActivity() {
         buttonSend.setOnClickListener {
             val intent = Intent()
             val text = mensajeView.text
-            intent.putExtra("mensajetext", text)
+            intent.putExtra("mensaje2", mensajeView.text.toString())
             setResult(Activity.RESULT_OK, intent)
             finish()
         }
